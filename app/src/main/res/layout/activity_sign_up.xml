@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <TextView
+        android:id="@+id/signUpPageToolBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:padding="20dp"
+        android:text="@string/signUpPageToolBarTitle"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/userProfilePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signUpPageToolBar"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/user" />
+
+    <TextView
+        android:id="@+id/titleNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userProfilePicture"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:text="NOTES APP"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+    <RelativeLayout
+        android:id="@+id/layoutInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleNotes"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/useNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="4dp"
+
+            android:text="FULL NAME"
+            android:textSize="19sp" />
+        <EditText
+            android:id="@+id/userNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="username"
+            android:fontFamily="sans-serif"
+            android:layout_below="@id/useNameText"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/useEmailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="4dp"
+
+            android:layout_below="@id/userNameET"
+            android:text="EMAIL"
+            android:textSize="19sp" />
+        <EditText
+            android:id="@+id/userEmailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:fontFamily="sans-serif"
+            android:layout_below="@id/useEmailText"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/userPasswordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingStart="4dp"
+
+            android:layout_below="@id/userEmailET"
+            android:text="PASSWORD"
+            android:textSize="19sp" />
+        <EditText
+            android:id="@+id/userpasswordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userPasswordText"
+            android:autofillHints="password"
+            android:fontFamily="sans-serif"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/dateOfBirthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="DATE OF BIRTH"
+            android:paddingStart="4dp"
+
+            android:layout_below="@id/userpasswordET"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/dateOfBirthET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateOfBirthText"
+            android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+            android:fontFamily="sans-serif"
+            android:importantForAutofill="no"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateOfBirthET"
+            android:fontFamily="sans-serif"
+            android:paddingStart="4dp"
+            android:text="GENDER"
+            android:textSize="19sp" />
+
+        <RadioGroup
+
+            android:id="@+id/userGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:orientation="horizontal"
+            android:paddingStart="4dp">
+
+
+            <RadioButton
+                android:id="@+id/userGenderMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:fontFamily="sans-serif"
+                android:text="Male"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/userGenderFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="Female" />
+
+        </RadioGroup>
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutInformation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/gradient_background"
+        android:paddingStart="100dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="100dp"
+        android:paddingBottom="5dp"
+        android:text="Create" />
+
+
+</RelativeLayout>
