@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SignUp">
 
     <TextView
@@ -10,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif"
-        android:padding="20dp"
+        android:fontFamily="@font/san"
+        android:padding="25dp"
         android:text="@string/signUpPageToolBarTitle"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
     <ImageView
         android:id="@+id/userProfilePicture"
@@ -30,11 +31,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/userProfilePicture"
         android:layout_centerHorizontal="true"
-        android:fontFamily="sans-serif"
-        android:padding="10dp"
+        android:padding="20dp"
         android:text="NOTES APP"
+        android:fontFamily="@font/san"
+
         android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:textSize="24sp" />
 
     <RelativeLayout
         android:id="@+id/layoutInformation"
@@ -47,49 +49,54 @@
             android:id="@+id/useNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/san"
             android:paddingStart="4dp"
 
             android:text="FULL NAME"
             android:textSize="19sp" />
+
         <EditText
             android:id="@+id/userNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="username"
-            android:fontFamily="sans-serif"
             android:layout_below="@id/useNameText"
+            android:autofillHints="username"
+            android:fontFamily="@font/san"
             android:inputType="text" />
 
         <TextView
             android:id="@+id/useEmailText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingStart="4dp"
-
             android:layout_below="@id/userNameET"
+            android:fontFamily="@font/san"
+            android:paddingTop="5dp"
+
+            android:paddingStart="4dp"
             android:text="EMAIL"
             android:textSize="19sp" />
+
         <EditText
             android:id="@+id/userEmailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/useEmailText"
             android:autofillHints="emailAddress"
             android:fontFamily="sans-serif"
-            android:layout_below="@id/useEmailText"
             android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/userPasswordText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingStart="4dp"
-
             android:layout_below="@id/userEmailET"
+            android:fontFamily="@font/san"
+            android:paddingTop="5dp"
+
+            android:paddingStart="4dp"
             android:text="PASSWORD"
             android:textSize="19sp" />
+
         <EditText
             android:id="@+id/userpasswordET"
             android:layout_width="match_parent"
@@ -103,11 +110,12 @@
             android:id="@+id/dateOfBirthText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="DATE OF BIRTH"
-            android:paddingStart="4dp"
-
             android:layout_below="@id/userpasswordET"
+            android:fontFamily="@font/san"
+            android:paddingStart="4dp"
+            android:paddingTop="5dp"
+
+            android:text="DATE OF BIRTH"
             android:textSize="19sp" />
 
         <EditText
@@ -116,17 +124,21 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dateOfBirthText"
             android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+            android:focusableInTouchMode="false"
             android:fontFamily="sans-serif"
             android:importantForAutofill="no"
-            android:inputType="date" />
+            android:inputType="date"
+            android:longClickable="false" />
 
         <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dateOfBirthET"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/san"
             android:paddingStart="4dp"
+            android:paddingTop="5dp"
+
             android:text="GENDER"
             android:textSize="19sp" />
 
@@ -137,7 +149,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:orientation="horizontal"
-            android:paddingStart="4dp">
+            android:paddingTop="5dp"
+
+            android:paddingStart="30dp">
 
 
             <RadioButton
@@ -160,18 +174,37 @@
         </RadioGroup>
     </RelativeLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layoutInformation"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/gradient_background"
-        android:paddingStart="100dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="100dp"
-        android:paddingBottom="5dp"
-        android:text="Create" />
+<!--    <Button-->
+<!--        android:id="@+id/createButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/layoutInformation"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--      -->
+<!--        android:paddingStart="100dp"-->
+<!--        android:paddingTop="5dp"-->
+<!--        android:paddingEnd="100dp"-->
+<!--        android:paddingBottom="5dp"-->
+<!--        app:shapeAppearanceOverlay="@drawable/gradient_background"-->
+<!--        android:text="Create" />-->
+
+   <android.widget.Button
+       android:id="@+id/createButton"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/layoutInformation"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="100dp"
+       android:background="@drawable/gradient_background"
+       android:paddingStart="100dp"
+       android:paddingTop="5dp"
+       android:paddingEnd="100dp"
+       android:paddingBottom="5dp"
+
+       android:text="Create"
+       />
+
 
 
 </RelativeLayout>
