@@ -10,6 +10,7 @@
     <color name="sea_green">#009E86</color>
     <color name="green">#01C55F</color>
     <color name="light_green">#4ACA8B</color>
-
+    <color name="grey">#E0E0E0</color>
+<color name="transparent">#00FFFFFF</color>
 
 </resources>
