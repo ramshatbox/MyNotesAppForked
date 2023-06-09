@@ -63,8 +63,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/san"
                     android:text="TITLE"
+                    android:fontFamily="@font/san"
                     android:textColor="@color/black"
                     android:textSize="35sp"
                     android:textStyle="bold" />
@@ -122,11 +122,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/san"
             android:maxHeight="470dp"
+            android:fontFamily="@font/san"
+            android:textSize="18dp"
             android:text="@string/defaultText"
-            android:textColor="@color/darkGrey"
-            android:textSize="18dp" />
+            android:textColor="@color/darkGrey" />
     </LinearLayout>
 
     <RelativeLayout
@@ -145,15 +145,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradient_background"
-                android:fontFamily="@font/san"
                 android:paddingStart="100dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="100dp"
                 android:paddingBottom="5dp"
                 android:text="Done"
-                android:textColor="@color/white"
-                android:textSize="18sp"
+android:fontFamily="@font/san"
                 android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/white"
 
                 />
         </LinearLayout>
