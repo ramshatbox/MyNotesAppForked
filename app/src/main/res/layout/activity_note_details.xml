@@ -63,8 +63,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TITLE"
                     android:fontFamily="@font/san"
+                    android:text="TITLE"
                     android:textColor="@color/black"
                     android:textSize="35sp"
                     android:textStyle="bold" />
@@ -122,11 +122,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxHeight="470dp"
             android:fontFamily="@font/san"
-            android:textSize="18dp"
+            android:maxHeight="470dp"
             android:text="@string/defaultText"
-            android:textColor="@color/darkGrey" />
+            android:textColor="@color/darkGrey"
+            android:textSize="18dp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -145,21 +145,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradient_background"
-                android:paddingStart="100dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="100dp"
-                android:paddingBottom="5dp"
-                android:text="Done"
-android:fontFamily="@font/san"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-
-                />
-            <android.widget.Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/gradient_background"
                 android:fontFamily="@font/san"
                 android:paddingStart="100dp"
                 android:paddingTop="5dp"
@@ -171,6 +156,7 @@ android:fontFamily="@font/san"
                 android:textStyle="bold"
 
                 />
+           
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
