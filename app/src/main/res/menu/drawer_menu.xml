@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/drawerNewNote"
+        android:icon="@drawable/drawer_edit_icon"
+        app:showAsAction="withText"
+        android:title="New Note" />
+
+    <item
+        app:showAsAction="withText"
+        android:icon="@drawable/drawer_fav_icon"
+        android:id="@+id/drawerFav"
+        app:iconTint="@color/red"
+        android:title="Favourite" />
+    <item
+        android:icon="@drawable/drawer_allnote_icon"
+        android:id="@+id/drawerAllNote"
+        app:showAsAction="withText"
+        app:iconTint="@color/yellow"
+        android:title="All Note" />
+
+    <item
+        app:showAsAction="withText"
+        android:id="@+id/drawerNoti"
+        app:iconTint="@color/blue"
+        android:icon="@drawable/drawer_notifications_icon"
+        android:title="Notification" />
+
+    <item
+        app:showAsAction="withText"
+        android:id="@+id/drawerUpdate"
+        app:iconTint="@color/blue"
+        android:title="UpdateData" />
 
 </menu>

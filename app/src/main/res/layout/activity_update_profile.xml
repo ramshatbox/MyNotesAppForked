@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarUpdateProfilePage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+
+        app:navigationIcon="@drawable/back_arrow_icon"/>
+
+    <ImageView
+        android:id="@+id/updateUserProfilePicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+
+        android:layout_below="@id/toolbarUpdateProfilePage"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+
+        android:background="@color/transparent"
+        android:padding="12dp"
+
+        android:scaleType="fitXY"
+        android:src="@drawable/user" />
+
+    <TextView
+        android:id="@+id/updateTitleNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updateUserProfilePicture"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/san"
+        android:padding="20dp"
+        android:text="USER NAME"
+
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <RelativeLayout
+        android:id="@+id/updateLayoutInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updateTitleNotes"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/updateUseNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/san"
+            android:paddingStart="4dp"
+
+            android:text="FULL NAME"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/updateUserNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateUseNameText"
+            android:autofillHints="username"
+            android:fontFamily="@font/san"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/updateUseEmailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateUserNameET"
+            android:fontFamily="@font/san"
+            android:paddingStart="4dp"
+
+            android:paddingTop="5dp"
+            android:text="EMAIL"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/updateUserEmailET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateUseEmailText"
+            android:autofillHints="emailAddress"
+            android:fontFamily="sans-serif"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/updateUserPasswordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateUserEmailET"
+            android:fontFamily="@font/san"
+            android:paddingStart="4dp"
+
+            android:paddingTop="5dp"
+            android:text="PASSWORD"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/updateUserpasswordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateUserPasswordText"
+            android:autofillHints="password"
+            android:fontFamily="sans-serif"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/updateDateOfBirthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateUserpasswordET"
+            android:fontFamily="@font/san"
+            android:paddingStart="4dp"
+            android:paddingTop="5dp"
+
+            android:text="DATE OF BIRTH"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/updateDateOfBirthET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateDateOfBirthText"
+            android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+            android:focusableInTouchMode="false"
+            android:fontFamily="sans-serif"
+            android:importantForAutofill="no"
+            android:inputType="date"
+            android:longClickable="false" />
+
+        <TextView
+            android:id="@+id/updateHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateDateOfBirthET"
+            android:fontFamily="@font/san"
+            android:paddingStart="4dp"
+            android:paddingTop="5dp"
+
+            android:text="GENDER"
+            android:textSize="19sp" />
+
+        <RadioGroup
+
+            android:id="@+id/updateUserGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateHeader"
+            android:orientation="horizontal"
+            android:paddingStart="30dp"
+
+            android:paddingTop="5dp">
+
+
+            <RadioButton
+                android:id="@+id/updateUserGenderMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:fontFamily="sans-serif"
+                android:text="Male"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/updateUserGenderFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="Female" />
+
+        </RadioGroup>
+    </RelativeLayout>
+
+    <!--    <Button-->
+    <!--        android:id="@+id/createButton"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/layoutInformation"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginTop="100dp"-->
+    <!--      -->
+    <!--        android:paddingStart="100dp"-->
+    <!--        android:paddingTop="5dp"-->
+    <!--        android:paddingEnd="100dp"-->
+    <!--        android:paddingBottom="5dp"-->
+    <!--        app:shapeAppearanceOverlay="@drawable/gradient_background"-->
+    <!--        android:text="Create" />-->
+
+    <android.widget.Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updateLayoutInformation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/gradient_background"
+        android:paddingStart="100dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="100dp"
+        android:paddingBottom="5dp"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
