@@ -1,17 +1,12 @@
-package com.example.api.ramsha.mynotes;
+package com.example.api.ramsha.mynotes.activities;
 
-import static android.content.ContentValues.TAG;
+import static com.example.api.ramsha.mynotes.data.FileStorage.SaveData;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +14,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.example.api.ramsha.mynotes.MyNotes;
+import com.example.api.ramsha.mynotes.R;
+import com.example.api.ramsha.mynotes.model.UserModel;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.Calendar;
 
@@ -38,16 +38,15 @@ public class SignUp extends AppCompatActivity {
         findViews();
         clickListeners();
         changeListeners();
+        FirebaseCrashlytics.getInstance().log("SigUp Page");
+
     }
 
     private void changeListeners() {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // Get the selected radio button by its id
                 RadioButton selectedRadioButton = findViewById(checkedId);
-
-                // Get the text of the selected radio button
                 gender = selectedRadioButton.getText().toString();
             }
         });
@@ -66,14 +65,10 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
-                // on below line we are getting
-                // our day, month and year.
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
-                // on below line we are creating a variable for date picker dialog.
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
                         SignUp.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -88,12 +83,17 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myNotes.updateVariables("",usernameET.getText().toString(),userPasswordET.getText().toString(),userEmailET.getText().toString(),dateOfBirth.getText().toString(),gender);
+                //save data to file
+                SaveData(usernameET.getText().toString(),userEmailET.getText().toString(),dateOfBirth.getText().toString(),gender);
+                //save data to database
+                UserModel user = new UserModel(usernameET.getText().toString(),userEmailET.getText().toString(),dateOfBirth.getText().toString(),gender);
+                myNotes.getDb().addUser(user);
                 Toast.makeText(myNotes, ""+usernameET.getText().toString(), Toast.LENGTH_SHORT).show();
                 dateOfBirth.setText("");
                 userEmailET.setText("");
                 userPasswordET.setText("");
                 usernameET.setText("");
-                Intent intent = new Intent(SignUp.this,Home.class);
+                Intent intent = new Intent(SignUp.this, Home.class);
                 startActivity(intent);
             }
         });

@@ -1,25 +1,15 @@
-package com.example.api.ramsha.mynotes;
-
-import static androidx.fragment.app.FragmentManager.TAG;
+package com.example.api.ramsha.mynotes.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -28,13 +18,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.api.ramsha.mynotes.MyNotes;
+import com.example.api.ramsha.mynotes.R;
+import com.example.api.ramsha.mynotes.adapter.NotesAdapter;
+import com.example.api.ramsha.mynotes.model.NotesDataModel;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +37,7 @@ public class Home extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView;
     DrawerLayout drawerLayout;
-    ArrayList<NotesDataModel> notesList = new ArrayList<NotesDataModel>();
+    ArrayList<NotesDataModel> notesList;
     BottomAppBar bottomAppBar;
     FloatingActionButton fab;
     ImageButton drawerBackBtn;
@@ -52,19 +46,56 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
     MyNotes myNotes;
     View headerView;
+    NotesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        FirebaseCrashlytics.getInstance().log("onCreate");
+
         myNotes = MyNotes.getInstance();
         findViews();
+
+        listeners();
         searchViewSetUp();
         toolbarSetUp();
         addNotesData();
         adapterSetUp();
         bottomAppBarSetup();
         navigationViewSetup();
+
+
+    }
+
+    private void listeners() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(Home.this, AddNewNote.class);
+                startActivity(i);
+
+//                FirebaseCrashlytics.getInstance().log("Home Page");
+//                FirebaseCrashlytics.getInstance().log("Forced Crash");
+//
+//                throw new RuntimeException("Test Crash");
+
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                NotesDataModel clickedNote = (NotesDataModel) adapter.getItem(position);
+
+                Intent intent = new Intent(Home.this, NoteDetails.class);
+
+                intent.putExtra("note_date", clickedNote.getDate());
+                intent.putExtra("note_title", clickedNote.getHeading());
+                intent.putExtra("note_content", clickedNote.getText());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -110,7 +141,7 @@ public class Home extends AppCompatActivity {
                 } else if (menuItemid == R.id.drawerNoti) {
                     drawerLayout.close();
                     Toast.makeText(Home.this, "Notification", Toast.LENGTH_SHORT).show();
-                }else if(menuItemid == R.id.drawerUpdate){
+                } else if (menuItemid == R.id.drawerUpdate) {
                     drawerLayout.close();
                     Intent i = new Intent(Home.this, UpdateProfile.class);
                     startActivity(i);
@@ -132,29 +163,31 @@ public class Home extends AppCompatActivity {
     }
 
     private void adapterSetUp() {
-        NotesAdapter adapter = new NotesAdapter(Home.this, notesList);
+         adapter = new NotesAdapter(Home.this, notesList);
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
     }
 
     private void addNotesData() {
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
-
-
+        notesList=myNotes.getDb().getAllNotes(myNotes.getEmail());
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
+//        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
     }
 
     private void toolbarSetUp() {
@@ -172,6 +205,8 @@ public class Home extends AppCompatActivity {
     }
 
     private void findViews() {
+        FirebaseCrashlytics.getInstance().log("inFindViews");
+
         searchView = (SearchView) findViewById(R.id.searchHomePage);
         toolbar = (Toolbar) findViewById(R.id.toolbarHomePage);
         listView = (ListView) findViewById(R.id.listViewHomePage);
@@ -189,7 +224,7 @@ public class Home extends AppCompatActivity {
         String name = data.get(1);
 
         Glide.with(Home.this).load(updatedProfile).into(drawerProfile);
-        Toast.makeText(myNotes, "" + updatedProfile, Toast.LENGTH_SHORT).show();
-        drawerUserName.setText(name);
+        addNotesData();
+        adapterSetUp();
     }
 }

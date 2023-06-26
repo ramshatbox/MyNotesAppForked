@@ -1,4 +1,4 @@
-package com.example.api.ramsha.mynotes;
+package com.example.api.ramsha.mynotes.model;
 
 public class NotesDataModel {
     String heading,text,date;

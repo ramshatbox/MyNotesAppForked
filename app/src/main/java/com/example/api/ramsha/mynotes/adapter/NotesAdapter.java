@@ -1,15 +1,17 @@
-package com.example.api.ramsha.mynotes;
+package com.example.api.ramsha.mynotes.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.api.ramsha.mynotes.R;
+import com.example.api.ramsha.mynotes.model.NotesDataModel;
 
 import java.util.ArrayList;
 
@@ -17,7 +19,7 @@ public class NotesAdapter extends ArrayAdapter<NotesDataModel> {
 
 
     public NotesAdapter(@NonNull Context context, ArrayList<NotesDataModel> notesList) {
-        super(context,R.layout.item_notes_list ,notesList);
+        super(context, R.layout.item_notes_list ,notesList);
     }
     @NonNull
     @Override
@@ -32,7 +34,9 @@ public class NotesAdapter extends ArrayAdapter<NotesDataModel> {
         heading.setText(list.getHeading());
         content.setText(list.getText());
         date.setText(list.getDate());
-        return convertView;
 
+        return convertView;
     }
+
+
 }

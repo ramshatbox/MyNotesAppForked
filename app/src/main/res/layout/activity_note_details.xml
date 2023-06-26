@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NoteDetails">
+    tools:context=".activities.NoteDetails">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
 
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarHomePage"
+            android:id="@+id/toolbarNoteDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -61,10 +61,21 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/noteDetailTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/san"
                     android:text="TITLE"
+                    android:visibility="visible"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:visibility="gone"
+                    android:id="@+id/noteDetailTitleET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/san"
                     android:textColor="@color/black"
                     android:textSize="35sp"
                     android:textStyle="bold" />
@@ -96,24 +107,24 @@
                     app:srcCompat="@drawable/share_icon" />
 
                 <ImageButton
-                    android:id="@+id/info"
+                    android:id="@+id/edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:paddingStart="0dp"
                     android:paddingEnd="0dp"
-                    app:srcCompat="@drawable/info_icon" />
+                    app:srcCompat="@drawable/baseline_edit_24" />
 
                 <ImageButton
-                    android:id="@+id/menu"
+                    android:id="@+id/delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:paddingStart="3dp"
                     android:paddingEnd="0dp"
-                    android:scaleX="1.6"
-                    android:scaleY="1.5"
-                    app:srcCompat="@drawable/three_dots_icon_vert" />
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    app:srcCompat="@drawable/baseline_delete_24" />
 
             </LinearLayout>
 
@@ -124,6 +135,18 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/san"
             android:maxHeight="470dp"
+            android:id="@+id/noteDetailContent"
+            android:text="@string/defaultText"
+            android:textColor="@color/darkGrey"
+            android:textSize="18dp" />
+
+        <EditText
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/san"
+            android:maxHeight="470dp"
+            android:id="@+id/noteDetailContentET"
             android:text="@string/defaultText"
             android:textColor="@color/darkGrey"
             android:textSize="18dp" />
@@ -142,6 +165,7 @@
             android:orientation="vertical">
 
             <android.widget.Button
+                android:id="@+id/noteDetailDoneBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradient_background"
@@ -151,6 +175,23 @@
                 android:paddingEnd="100dp"
                 android:paddingBottom="5dp"
                 android:text="Done"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
+                />
+            <android.widget.Button
+                android:visibility="gone"
+                android:id="@+id/noteDetailUpdateBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_background"
+                android:fontFamily="@font/san"
+                android:paddingStart="100dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="100dp"
+                android:paddingBottom="5dp"
+                android:text="Update"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"

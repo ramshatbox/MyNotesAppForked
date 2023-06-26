@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.api.ramsha.mynotes.data.DatabaseStorage;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -25,10 +27,12 @@ public class MyNotes extends Application {
     private String mpassword = "";
     private String mdob = "";
     private String mgender = "";
+    private DatabaseStorage db;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        db = new DatabaseStorage(getApplicationContext());
         instance = this;
         sharedPreferences = getSharedPreferences("MyNotesPrefs", Context.MODE_PRIVATE);
         mimagePath = sharedPreferences.getString("ImagePath", "");
@@ -37,8 +41,10 @@ public class MyNotes extends Application {
         mpassword = sharedPreferences.getString("Password", "");
         mdob = sharedPreferences.getString("Dob", "");
         mgender = sharedPreferences.getString("Gender", "");
+    }
 
-
+    public DatabaseStorage getDb() {
+        return db;
     }
 
     public static MyNotes getInstance() {
@@ -47,32 +53,32 @@ public class MyNotes extends Application {
 
     public void updateVariables(String path, String name, String pass, String email, String dob, String gender) {
         //retain values which are not updated and update value added
-        if(!path.equals(""))
+        if (!path.equals(""))
             mimagePath = path;
         else
             sharedPreferences.getString("ImagePath", "");
 
-        if(!name.equals(""))
+        if (!name.equals(""))
             mname = name;
         else
             sharedPreferences.getString("Name", "");
 
-        if(!email.equals(""))
+        if (!email.equals(""))
             memail = email;
         else
             sharedPreferences.getString("Email", "");
 
-        if(!pass.equals(""))
+        if (!pass.equals(""))
             mpassword = pass;
         else
             sharedPreferences.getString("Password", "");
 
-        if(!gender.equals(""))
+        if (!gender.equals(""))
             mgender = gender;
         else
             sharedPreferences.getString("Gender", "");
 
-        if(!dob.equals(""))
+        if (!dob.equals(""))
             mdob = dob;
         else
             sharedPreferences.getString("Dob", "");
@@ -90,7 +96,7 @@ public class MyNotes extends Application {
     }
 
     public List<String> getVariableValues() {
-        ArrayList<String> data=new ArrayList<>();
+        ArrayList<String> data = new ArrayList<>();
         data.add(mimagePath);
         data.add(mname);
         data.add(memail);
@@ -99,5 +105,9 @@ public class MyNotes extends Application {
         data.add(mgender);
 
         return data;
+    }
+
+    public String getEmail() {
+        return memail;
     }
 }
