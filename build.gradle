@@ -1,10 +1,17 @@
 buildscript {
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.0'
         classpath 'com.google.gms:google-services:4.3.15'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.6'
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 plugins {
     id 'com.android.application' version '8.0.2' apply false
     id 'com.android.library' version '8.0.2' apply false
@@ -12,4 +19,13 @@ plugins {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}}
+}
+allprojects {
+
+    repositories {
+        // Check that you have the following line (if not, add it):
+
+//        google()  // Google's Maven repository
+    }
+}
+

@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/drawerNewNote"
-        android:icon="@drawable/drawer_edit_icon"
+        app:actionLayout="@layout/newnote_menuitem"
         app:showAsAction="withText"
-        android:title="New Note" />
+        tools:ignore="MenuTitle" />
 
     <item
         app:showAsAction="withText"
-        android:icon="@drawable/drawer_fav_icon"
         android:id="@+id/drawerFav"
-        app:iconTint="@color/red"
-        android:title="Favourite" />
+        app:actionLayout="@layout/favourite_menuitem"
+        tools:ignore="MenuTitle" />
     <item
-        android:icon="@drawable/drawer_allnote_icon"
+
         android:id="@+id/drawerAllNote"
         app:showAsAction="withText"
+        app:actionLayout="@layout/allnote_menuitem"
         app:iconTint="@color/yellow"
-        android:title="All Note" />
+        tools:ignore="MenuTitle" />
 
     <item
         app:showAsAction="withText"
         android:id="@+id/drawerNoti"
-        app:iconTint="@color/blue"
-        android:icon="@drawable/drawer_notifications_icon"
-        android:title="Notification" />
+        app:actionLayout="@layout/notification_menuitem"
+
+        tools:ignore="MenuTitle" />
 
     <item
         app:showAsAction="withText"
         android:id="@+id/drawerUpdate"
         app:iconTint="@color/blue"
         android:title="UpdateData" />
+    <item
+        app:showAsAction="withText"
+        android:id="@+id/drawerLogOut"
+        app:iconTint="@color/blue"
+        android:title="SignOut" />
 
 </menu>

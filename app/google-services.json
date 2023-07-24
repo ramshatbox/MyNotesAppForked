@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "755903718629-0rj4kgrndvih04ujagcdoaat9jrkte2c.apps.googleusercontent.com",
+          "client_id": "755903718629-m33srppp2trbh1sj5fa32g5msh2b92ov.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.api.ramsha.mynotes",
+            "certificate_hash": "ece019a78fed3c66dd2a6b92f9231eda85a65c22"
+          }
+        },
+        {
+          "client_id": "755903718629-oaae6u2jd5okcg2n8r3nhcr08a898ln9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

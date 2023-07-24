@@ -1,44 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:background="@color/transparent"
 
     >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:elevation="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/notes_background"
-        >
-    <TextView
-        android:id="@+id/noteHeading"
-        android:text="heading"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/noteContent"
-        android:layout_below="@id/noteHeading"
-        android:layout_width="wrap_content"
-        android:text="@string/defaultText"
-        android:maxLines="4"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/noteDate"
-        android:layout_below="@id/noteContent"
-        android:layout_alignParentRight="true"
-        android:text="27-09-2023"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:elevation="10dp"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/noteHeadingContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/noteHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Heading"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingTop="7dp"
+                android:scaleType="fitCenter"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/baseline_location_24" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/noteContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/noteHeadingContainer"
+            android:maxLines="4"
+            android:text="@string/defaultText" />
+
+        <TextView
+            android:id="@+id/noteDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/noteContent"
+            android:layout_alignParentRight="true"
+            android:text="27-09-2023" />
+
+
     </RelativeLayout>
 
 </RelativeLayout>

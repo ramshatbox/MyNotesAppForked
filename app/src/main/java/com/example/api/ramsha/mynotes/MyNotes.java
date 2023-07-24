@@ -19,6 +19,7 @@ public class MyNotes extends Application {
     private static MyNotes instance;
     private SharedPreferences sharedPreferences;
     private String mimagePath = "";
+    private boolean notification = false;
 
     private String mname = "";
 
@@ -41,6 +42,7 @@ public class MyNotes extends Application {
         mpassword = sharedPreferences.getString("Password", "");
         mdob = sharedPreferences.getString("Dob", "");
         mgender = sharedPreferences.getString("Gender", "");
+        notification = sharedPreferences.getBoolean("notification", false);
     }
 
     public DatabaseStorage getDb() {
@@ -93,6 +95,16 @@ public class MyNotes extends Application {
         editor.putString("Gender", mgender);
 
         editor.apply();
+    }
+
+    public void setnotification(boolean notification) {
+        this.notification = notification;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("notification", this.notification);
+        editor.apply();
+    }
+    public boolean notificationState(){
+        return this.notification;
     }
 
     public List<String> getVariableValues() {

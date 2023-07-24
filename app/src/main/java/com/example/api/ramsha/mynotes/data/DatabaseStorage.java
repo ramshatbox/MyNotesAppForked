@@ -34,6 +34,9 @@ public class DatabaseStorage extends SQLiteOpenHelper {
 
     public static final String NOTE_TABLE = "NoteTable";
 
+    public static final String LOCATION_LONG = "LocationLong";
+    public static final String LOCATION_LAT = "LocationLat";
+
 
     public DatabaseStorage(@Nullable Context context) {
         super(context, "MyNotesDB.db", null, 1);
@@ -52,7 +55,11 @@ public class DatabaseStorage extends SQLiteOpenHelper {
                 NOTE_ID + " INTEGER, " +
                 NOTE_TITLE + " TEXT, " +
                 NOTE_CONTENT + " TEXT, " +
-                NOTE_DATE + " TEXT )";
+
+                NOTE_DATE + " TEXT, "+
+                LOCATION_LONG + " DOUBLE, "+
+
+                LOCATION_LAT + " DOUBLE) ";
         db.execSQL(createTableStatement);
         db.execSQL(NoteTable);
     }
@@ -79,7 +86,10 @@ public class DatabaseStorage extends SQLiteOpenHelper {
         int id = getUserID(email);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        double[] location= note_model.getLocation();
         cv.put(NOTE_ID, id);
+        cv.put(LOCATION_LONG,location[1]);
+        cv.put(LOCATION_LAT,location[0]);
         cv.put(NOTE_TITLE, note_model.getHeading());
         cv.put(NOTE_CONTENT, note_model.getText());
         cv.put(NOTE_DATE, note_model.getDate());
@@ -121,11 +131,11 @@ public class DatabaseStorage extends SQLiteOpenHelper {
                 , null);
         if (cursorNotes.moveToFirst()) {
             do {
+                double[] location = { cursorNotes.getDouble(5),cursorNotes.getDouble(4)} ;
                 NotesDataModel note = new NotesDataModel(cursorNotes.getString(1),
                         cursorNotes.getString(2),
-                        cursorNotes.getString(3));
+                        cursorNotes.getString(3),location);
                 list.add(note);
-
             } while (cursorNotes.moveToNext());
         }
         cursorNotes.close();

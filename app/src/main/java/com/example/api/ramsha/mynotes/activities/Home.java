@@ -2,18 +2,27 @@ package com.example.api.ramsha.mynotes.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +31,15 @@ import com.example.api.ramsha.mynotes.MyNotes;
 import com.example.api.ramsha.mynotes.R;
 import com.example.api.ramsha.mynotes.adapter.NotesAdapter;
 import com.example.api.ramsha.mynotes.model.NotesDataModel;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.util.ArrayList;
@@ -47,14 +60,19 @@ public class Home extends AppCompatActivity {
     MyNotes myNotes;
     View headerView;
     NotesAdapter adapter;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    ;
+    GoogleSignInClient gsi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         FirebaseCrashlytics.getInstance().log("onCreate");
-
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         myNotes = MyNotes.getInstance();
+        gsi = SignUp.getGoogleSignInClient();
+
         findViews();
 
         listeners();
@@ -64,6 +82,7 @@ public class Home extends AppCompatActivity {
         adapterSetUp();
         bottomAppBarSetup();
         navigationViewSetup();
+        notificationSwitchSetUp();
 
 
     }
@@ -93,7 +112,24 @@ public class Home extends AppCompatActivity {
                 intent.putExtra("note_date", clickedNote.getDate());
                 intent.putExtra("note_title", clickedNote.getHeading());
                 intent.putExtra("note_content", clickedNote.getText());
+                intent.putExtra("location", clickedNote.getLocation());
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void notificationSwitchSetUp() {
+        Menu menu = navigationView.getMenu();
+        View v = menu.getItem(3).getActionView();
+        SwitchCompat swich = v.findViewById(R.id.notificationsSwitch);
+        swich.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if (isChecked) {
+                myNotes.setnotification(true);
+                Toast.makeText(Home.this, "Notifications enabled", Toast.LENGTH_SHORT).show();
+            } else {
+                myNotes.setnotification(false);
+                Toast.makeText(Home.this, "Notifications disabled", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -103,7 +139,7 @@ public class Home extends AppCompatActivity {
         if (drawerLayout.isOpen()) {
             drawerLayout.close();
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
         }
     }
 
@@ -116,7 +152,7 @@ public class Home extends AppCompatActivity {
         String updatedProfile = data.get(0);
         String name = data.get(1);
         Glide.with(Home.this).load(updatedProfile).into(drawerProfile);
-        Toast.makeText(myNotes, "" + updatedProfile, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(myNotes, "" + updatedProfile, Toast.LENGTH_SHORT).show();
         drawerUserName.setText(name);
         drawerBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +160,9 @@ public class Home extends AppCompatActivity {
                 drawerLayout.close();
             }
         });
+
+        notificationSwitchSetUp();
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -139,12 +178,20 @@ public class Home extends AppCompatActivity {
                     drawerLayout.close();
                     Toast.makeText(Home.this, "All Notes", Toast.LENGTH_SHORT).show();
                 } else if (menuItemid == R.id.drawerNoti) {
-                    drawerLayout.close();
-                    Toast.makeText(Home.this, "Notification", Toast.LENGTH_SHORT).show();
+
                 } else if (menuItemid == R.id.drawerUpdate) {
                     drawerLayout.close();
                     Intent i = new Intent(Home.this, UpdateProfile.class);
                     startActivity(i);
+                } else if (menuItemid == R.id.drawerLogOut) {
+                    drawerLayout.close();
+                    mAuth.getInstance().signOut();
+
+                    gsi.signOut();
+                    finish();
+//Intent intent = new Intent(Home.this,SignUp.class);
+//startActivity(intent);
+
                 }
                 return false;
             }
@@ -163,7 +210,7 @@ public class Home extends AppCompatActivity {
     }
 
     private void adapterSetUp() {
-         adapter = new NotesAdapter(Home.this, notesList);
+        adapter = new NotesAdapter(Home.this, notesList);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -171,7 +218,7 @@ public class Home extends AppCompatActivity {
     }
 
     private void addNotesData() {
-        notesList=myNotes.getDb().getAllNotes(myNotes.getEmail());
+        notesList = myNotes.getDb().getAllNotes(myNotes.getEmail());
 //        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
 //        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));
 //        notesList.add(new NotesDataModel("ANY DOC", getString(R.string.defaultText), "03-06-2023"));

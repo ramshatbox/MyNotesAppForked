@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="55dp"
+        android:background="@drawable/notes_background"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/noteDetailTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/san"
+                    android:text="TITLE"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/noteDetailTitleET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/san"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    app:srcCompat="@drawable/fav_icon" />
+
+                <ImageButton
+                    android:id="@+id/share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    app:srcCompat="@drawable/share_icon" />
+
+                <ImageButton
+                    android:id="@+id/edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    app:srcCompat="@drawable/baseline_edit_24" />
+
+                <ImageButton
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:paddingStart="3dp"
+                    android:paddingEnd="0dp"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    app:srcCompat="@drawable/baseline_delete_24" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/noteDetailContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/san"
+            android:maxHeight="470dp"
+            android:text="@string/defaultText"
+            android:textColor="@color/darkGrey"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/noteDetailContentET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/san"
+            android:maxHeight="470dp"
+            android:text="@string/defaultText"
+            android:textColor="@color/darkGrey"
+            android:textSize="18dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="130dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/noteDetail_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/baseline_location_24" />
+
+            <android.widget.Button
+                android:id="@+id/noteDetailDoneBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_background"
+                android:fontFamily="@font/san"
+                android:paddingStart="100dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingEnd="100dp"
+                android:paddingBottom="5dp"
+                android:text="Done"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+
+                />
+
+            <android.widget.Button
+                android:id="@+id/noteDetailUpdateBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_background"
+                android:fontFamily="@font/san"
+                android:paddingStart="100dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="100dp"
+                android:paddingBottom="5dp"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

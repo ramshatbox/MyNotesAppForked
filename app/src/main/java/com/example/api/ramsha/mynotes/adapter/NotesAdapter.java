@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,13 @@ public class NotesAdapter extends ArrayAdapter<NotesDataModel> {
         TextView heading = convertView.findViewById(R.id.noteHeading);
         TextView content = convertView.findViewById(R.id.noteContent);
         TextView date = convertView.findViewById(R.id.noteDate);
+        ImageView loc = convertView.findViewById(R.id.location);
 
+        double[] latlong = list.getLocation();
+        if(latlong[0]==0.0 && latlong[1]==0.0)
+            loc.setVisibility(View.INVISIBLE);
+        else
+            loc.setVisibility(View.VISIBLE);
         heading.setText(list.getHeading());
         content.setText(list.getText());
         date.setText(list.getDate());
