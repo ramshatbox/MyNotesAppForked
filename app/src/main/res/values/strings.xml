@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MyNotes</string>
-    <string name="toolbartitle">MY NOTES</string>
+    <string name="toolbartitle">MY NOTES FORKED</string>
     <string name="signUpPageToolBarTitle">SIGN UP</string>
     <string name="defaultText">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam</string>
 <string name="facebook_app_id">962919281610696</string>
